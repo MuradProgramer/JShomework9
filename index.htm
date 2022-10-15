@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8"/>
+        <title>Document</title>
+        <link rel="stylesheet" href="main.css">
+    </head>
+
+    <body>
+
+        <div id="container">
+
+            <ul>
+                <li><button id="bold"><b>B</b></button></li>
+                <li><button id="italic"><i>I</i></button></li>
+                <li><button id="underline"><u>U</u></button></li>
+                <li>
+                    <select id="color">
+                        <option>red</option>
+                        <option selected="selected">white</option>
+                        <option>green</option>
+                        <option>yellow</option>
+                        <option>blue</option>
+                        <option>hotpink</option>
+                        <option>orange</option>
+                    </select>
+                </li>
+                <li>
+                    <select id="fonts">
+                        <option>Arial</option>
+                        <option>Times New Roman</option>
+                        <option>Franklin Gothic</option>
+                        <option selected="selected">Calibry</option>
+                        <option>Trebuchet MS</option>
+                        <option>Comic Sans MS</option>
+                    </select>
+                </li>
+            </ul>
+
+            <div id="textarea">
+                <textarea id="text" rows="5" cols="122"></textarea>
+            </div>
+            
+        </div>
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+        <script>
+            
+            $(() => {
+                const boldBtn = $("button#bold")
+                const italicBtn = $("#italic")
+                const underlineBtn = $("#underline")
+                const scolor = $("#color")
+                const fonts = $("#fonts")
+                const textarea = $("#text")
+
+                let bool1 = false
+                let bool2 = false
+                let bool3 = false
+
+                boldBtn.click(function() {
+                    let weight = (!bool1) ? 'bold' : '100'
+                    textarea.css('font-weight', `${weight}`)
+                    bool1 = !bool1
+                })
+
+                italicBtn.click(function() {
+                    let style = (!bool2) ? 'italic' : 'normal'
+                    textarea.css('font-style', `${style}`)
+                    bool2 = !bool2
+                })
+
+                underlineBtn.click(function() {
+                    let dec = (!bool3) ? 'underline' : 'none' 
+                    textarea.css('text-decoration', `${dec}`)
+                    bool3 = !bool3
+                })
+
+                scolor.change(function(){
+                    textarea.css('color', `${$(this).children('option:selected').val()}`)
+                })
+
+                fonts.change(function(){
+                    textarea.css('font-family', `${$(this).children('option:selected').val()}`)
+                })
+            }) 
+
+        </script>
+
+    </body>
+
+</html>
